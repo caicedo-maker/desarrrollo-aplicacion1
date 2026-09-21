@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tutor HTML5 CSS | CodeFlow Academy</title>
+    <link rel="shortcut icon" href="imagenes/iconois.jpeg" type="image/x-icon" />
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" type="text/css" href="css/estilo1.css">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ================= HEADER ================= -->
+	<header class="header-banner">
+    <img src="imagenes/encabezadoia.png" alt="Encabezado Tutorial Web HTML5 CSS" width="900" height="300px">
+	</header>
+
+    <!-- ================= NAVEGACIÓN ================= -->
+    <nav>
+        <ul>
+            <li><a href="home.html" class="active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="../html9.html"><i class="fa-solid fa-book"></i> Conceptos</a></li>
+            <li><a href="Api.html"><i class="fa-solid fa-plug"></i> Api</a></li>
+            <li><a href="frontend.html"><i class="fa-solid fa-laptop-code"></i> Frontend</a></li>
+            <li><a href="backend.html"><i class="fa-solid fa-server"></i> Backend</a></li>
+            <li><a href="css.html"><i class="fa-brands fa-css3-alt"></i> CSS</a></li>
+            <li><a href="presentacion.html"><i class="fa-solid fa-id-card"></i> Presentación</a></li>
+        </ul>
+    </nav>
+
+    <!-- ================= BARRA DE TECNOLOGÍAS ================= -->
+    <section class="tech-bar">
+        <div class="tech-item tech-html">
+            <i class="fa-brands fa-html5"></i> HTML5
+        </div>
+        <div class="tech-item tech-css">
+            <i class="fa-brands fa-css3-alt"></i> CSS3
+        </div>
+        <div class="tech-item tech-js">
+            <i class="fa-brands fa-js"></i> JavaScript
+        </div>
+        <div class="tech-item tech-python">
+            <i class="fa-brands fa-python"></i> Python
+        </div>
+    </section>
+
+   <!-- ================= CARRUSEL DE IMÁGENES (SLIDER) ================= -->
+<section class="slider-section">
+    <div class="slider-container">
+        
+        <div class="slide active">
+            <img src="imagenes/img1.png" alt="Slide 1">
+            <div class="slide-texto">
+                <h3>Aprende HTML5</h3>
+                <p>La base de toda página web moderna</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="imagenes/img2.jpg" alt="Slide 2">
+            <div class="slide-texto">
+                <h3>Domina CSS3</h3>
+                <p>Diseños espectaculares y responsivos</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="imagenes/img3.png" alt="Slide 3">
+            <div class="slide-texto">
+                <h3>Proyectos Reales</h3>
+                <p>Construye tu portafolio profesional</p>
+            </div>
+        </div>
+
+        <div class="slider-dots">
+            <span class="dot active" onclick="cambiarSlide(0)"></span>
+            <span class="dot" onclick="cambiarSlide(1)"></span>
+            <span class="dot" onclick="cambiarSlide(2)"></span>
+        </div>
+
+    </div>
+
+
+</section>
+
+    <!-- ================= CONTENEDOR PRINCIPAL ================= -->
+    <div class="main-container">
+        
+        <!-- ===== SECCIÓN PRINCIPAL (Contenido) ===== -->
+        <section class="contenido-principal">
+            
+            <!-- Hero interno -->
+            <div class="hero-interno">
+                <h1>Bienvenido a tu <span>Tutorial Web</span></h1>
+                <p>Aprende a construir sitios web modernos, responsivos y visualmente impactantes. Desde la estructura básica con HTML5 hasta animaciones avanzadas con CSS3.</p>
+                <div class="hero-botones">
+                    <button class="btn-primary">Empezar Curso</button>
+                    <button class="btn-secondary">Ver Temario</button>
+                </div>
+            </div>
+
+            <!-- Sección de Cursos Destacados -->
+            <div class="cursos-destacados">
+                <h2>Nuestros Tutoriales</h2>
+                <div class="cursos-grid">
+                    
+                    <div class="curso-card">
+                        <div class="curso-header" style="background: #E34F26;"></div>
+                        <div class="curso-body">
+                            <span class="curso-nivel">Principiante</span>
+                            <h3>Introducción a HTML5</h3>
+                            <p>Aprende las bases del lenguaje de marcado y crea la estructura de tus primeras páginas web.</p>
+                            <a href="#" class="curso-link">Ver Curso <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="curso-card">
+                        <div class="curso-header" style="background: #1572B6;"></div>
+                        <div class="curso-body">
+                            <span class="curso-nivel">Intermedio</span>
+                            <h3>CSS Flexbox y Grid</h3>
+                            <p>Domina las herramientas de maquetación moderna para crear diseños complejos y flexibles.</p>
+                            <a href="#" class="curso-link">Ver Curso <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="curso-card">
+                        <div class="curso-header" style="background: #F7DF1E;"></div>
+                        <div class="curso-body">
+                            <span class="curso-nivel">Avanzado</span>
+                            <h3>Animaciones CSS</h3>
+                            <p>Da vida a tus proyectos con efectos visuales impresionantes usando solo CSS puro.</p>
+                            <a href="#" class="curso-link">Ver Curso <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Sección de Características -->
+            <div class="caracteristicas">
+                <h2>¿Por qué aprender con nosotros?</h2>
+                <div class="caracteristicas-grid">
+                    <div class="caracteristica-item">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <h4>Código Limpio</h4>
+                        <p>Mejores prácticas y semántica profesional.</p>
+                    </div>
+                    <div class="caracteristica-item">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <h4>Diseño Responsivo</h4>
+                        <p>Adapta tus sitios a cualquier dispositivo.</p>
+                    </div>
+                    <div class="caracteristica-item">
+                        <i class="fa-solid fa-globe"></i>
+                        <h4>Proyectos Reales</h4>
+                        <p>Construye un portafolio mientras aprendes.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===== ASIDE (Barra Lateral) ===== -->
+        <aside>
+            <!-- Buscador -->
+            <div class="aside-widget">
+                <h3><i class="fa-solid fa-search"></i> Buscar</h3>
+                <form class="buscador">
+                    <input type="text" placeholder="¿Qué quieres aprender?">
+                    <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+            </div>
+
+            <!-- Enlaces Populares -->
+            <div class="aside-widget">
+                <h3><i class="fa-solid fa-fire"></i> Populares</h3>
+                <ul class="lista-populares">
+                    <li><a href="#"><i class="fa-brands fa-html5"></i> Guía HTML5</a></li>
+                    <li><a href="#"><i class="fa-brands fa-css3-alt"></i> Trucos CSS3</a></li>
+                    <li><a href="#"><i class="fa-solid fa-mobile-screen"></i> Diseño Responsivo</a></li>
+                    <li><a href="#"><i class="fa-solid fa-code"></i> Ejemplos de Código</a></li>
+                    <li><a href="#"><i class="fa-solid fa-rocket"></i> Optimización Web</a></li>
+                </ul>
+            </div>
+
+            <!-- Categorías -->
+            <div class="aside-widget">
+                <h3><i class="fa-solid fa-tags"></i> Categorías</h3>
+                <div class="tags">
+                    <span class="tag">HTML5</span>
+                    <span class="tag">CSS3</span>
+                    <span class="tag">Flexbox</span>
+                    <span class="tag">Grid</span>
+                    <span class="tag">Animaciones</span>
+                    <span class="tag">Responsive</span>
+                </div>
+            </div>
+
+            <!-- Widget de Progreso -->
+            <div class="aside-widget progress-widget">
+                <h3><i class="fa-solid fa-chart-line"></i> Tu Progreso</h3>
+                <p>Curso: HTML5 Básico</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 65%;"></div>
+                </div>
+                <span class="progress-text">65% Completado</span>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4><i class="fa-solid fa-code"></i> Tutor Web</h4>
+                <p>Tu plataforma de aprendizaje para dominar el desarrollo web moderno.</p>
+                <div class="footer-icons">
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="home.html">Inicio</a></li>
+                    <li><a href="../html9.html">Conceptos</a></li>
+                    <li><a href="Frontend.html">Frontend</a></li>
+                    <li><a href="Backend.html">Backend</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="#">Documentación</a></li>
+                    <li><a href="#">Ejercicios</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tutor Web - Todos los derechos reservados. Diseñado con <i class="fa-solid fa-heart" style="color: var(--naranja);"></i></p>
+        </div>
+    </footer>
+
+
+    <script>
+    window.onload = function() {
+        var slides = document.querySelectorAll('.slide');
+        var dots = document.querySelectorAll('.dot');
+        var slideActual = 0;
+        var totalSlides = slides.length;
+
+        function mostrarSlide(n) {
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+                if (dots[i]) dots[i].classList.remove('active');
+            }
+            slides[n].classList.add('active');
+            if (dots[n]) dots[n].classList.add('active');
+            slideActual = n;
+        }
+
+        function siguienteSlide() {
+            var siguiente = (slideActual + 1) % totalSlides;
+            mostrarSlide(siguiente);
+        }
+
+        window.cambiarSlide = function(n) {
+            mostrarSlide(n);
+        };
+
+        // 🔥 ESTA LÍNEA HACE QUE SE DESLICEN AUTOMÁTICAMENTE CADA 3 SEGUNDOS
+        setInterval(siguienteSlide, 3000);
+    };
+</script>
+
+
+</body>
+</html>

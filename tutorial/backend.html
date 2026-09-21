@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoría del Backend</title>
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --dark-blue: #003366;
+            --bg-body: #f0f4f8;
+            --text-dark: #333;
+            --text-light: #666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 50px;
+            overflow-x: hidden;
+        }
+
+        /* --- ANIMACIONES --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatIcon {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes floatTag {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes drawLine {
+            from { width: 0; }
+            to { width: 5px; }
+        }
+
+        /* --- ENCABEZADO --- */
+        header {
+            background: linear-gradient(135deg, #003366 0%, #007bff 100%);
+            color: white;
+            text-align: center;
+            padding: 70px 20px 90px 20px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        /* --- CONTENEDOR --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.3s; }
+        .card:nth-child(2) { animation-delay: 0.5s; }
+        .card:nth-child(3) { animation-delay: 0.7s; }
+        .card:nth-child(4) { animation-delay: 0.9s; }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(0,123,255,0.15);
+        }
+
+        /* --- TÍTULOS CON LÍNEA ANIMADA --- */
+        .card h2 {
+            color: var(--dark-blue);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .card h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 100%;
+            width: 5px;
+            background: var(--primary-blue);
+            border-radius: 5px;
+            animation: drawLine 0.8s ease-out forwards;
+        }
+
+        .card h2 .icon {
+            display: inline-block;
+            animation: floatIcon 3s infinite ease-in-out;
+        }
+
+        .card p, .card ul {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* --- LISTAS CON ESTILO DE TARJETA --- */
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .card ul li {
+            background: #f8faff;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            font-size: 1rem;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .card ul li::before {
+            content: '✔';
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.1rem;
+            background: #e7f1ff;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .card ul li:hover {
+            transform: translateX(10px);
+            background: #e7f1ff;
+            border-left-color: var(--dark-blue);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.1);
+        }
+
+        /* --- ETIQUETAS CON VIDA --- */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #e7f1ff 0%, #d0e4ff 100%);
+            color: var(--dark-blue);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+            box-shadow: 0 4px 10px rgba(0,123,255,0.1);
+            animation: floatTag 3s infinite ease-in-out;
+            border: 1px solid rgba(0,123,255,0.1);
+        }
+
+        .tag:nth-child(1) { animation-delay: 0s; }
+        .tag:nth-child(2) { animation-delay: 0.5s; }
+        .tag:nth-child(3) { animation-delay: 1s; }
+        .tag:nth-child(4) { animation-delay: 1.5s; }
+        .tag:nth-child(5) { animation-delay: 2s; }
+
+        .tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .tag:hover {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,123,255,0.4);
+            animation-play-state: paused;
+        }
+
+        .tag:hover::before {
+            background: white;
+        }
+
+        /* --- BLOQUE DE CÓDIGO --- */
+        .code-block {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 20px;
+            border-left: 5px solid #28a745;
+            white-space: pre;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .code-block:hover {
+            box-shadow: 0 0 20px rgba(40, 167, 69, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Teoría del Backend</h1>
+        <p>La capa lógica y de procesamiento del servidor</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card">
+            <h2><span class="icon">🧠</span> ¿Qué es el Backend?</h2>
+            <p>El Backend (o lado del servidor) es la capa lógica y de procesamiento de una aplicación. Es todo el código que se ejecuta en un servidor remoto (no en el navegador del usuario) y que se encarga de gestionar la información, aplicar reglas de negocio y comunicarse con la base de datos. Es el "cerebro" de la aplicación; el usuario nunca lo ve directamente.</p>
+        </div>
+
+        <div class="card">
+            <h2><span class="icon">🎯</span> ¿Para qué sirve?</h2>
+            <p>Sirve para procesar, almacenar y proteger la información. Sus objetivos principales son:</p>
+            <ul>
+                <li>Recibir las peticiones que envía el Frontend.</li>
+                <li>Aplicar reglas de negocio (ej: "no se puede registrar un email duplicado").</li>
+                <li>Comunicarse con la base de datos para guardar, leer, actualizar o eliminar información.</li>
+                <li>Garantizar la seguridad (autenticación, encriptación de contraseñas).</li>
+                <li>Devolver una respuesta al Frontend (generalmente en formato JSON).</li>
+            </ul>
+        </div>
+
+        <!-- Aquí estaba el icono del engrane, ya lo quité -->
+        <div class="card">
+            <h2>Tecnologías que utiliza</h2>
+            <ul>
+                <li><strong>Lenguajes de servidor:</strong> Node.js, Python, PHP, Java, C#.</li>
+                <li><strong>Bases de Datos:</strong> MySQL, PostgreSQL, MongoDB.</li>
+                <li><strong>Servidores Web:</strong> Apache, Nginx.</li>
+                <li><strong>APIs:</strong> REST, GraphQL.</li>
+            </ul>
+            <div class="tags">
+                <span class="tag">Node.js</span>
+                <span class="tag">Python</span>
+                <span class="tag">PHP</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">MongoDB</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><span class="icon">💻</span> Ejemplo en Código</h2>
+            <p>Este es un ejemplo de un Backend real usando <strong>Node.js con Express</strong>. Simula recibir los datos del Frontend, validarlos y guardarlos.</p>
+            <div class="code-block">
+// archivo: server.js (Backend - Node.js + Express)
+
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+let usuariosDB = [
+    { id: 1, nombre: "Ana", email: "ana@test.com" }
+];
+
+app.post('/api/registro', (req, res) => {
+    const { nombre, email } = req.body;
+
+    if (!nombre || !email) {
+        return res.status(400).json({ error: "Faltan datos" });
+    }
+
+    const existe = usuariosDB.find(u => u.email === email);
+    if (existe) {
+        return res.status(409).json({ error: "El correo ya existe" });
+    }
+
+    const nuevoUsuario = { id: usuariosDB.length + 1, nombre, email };
+    usuariosDB.push(nuevoUsuario);
+
+    res.status(201).json({ 
+        mensaje: "Usuario registrado exitosamente", 
+        usuario: nuevoUsuario 
+    });
+});
+
+app.listen(3000, () => {
+    console.log("Servidor corriendo en http://localhost:3000");
+});
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Libros - Google Books</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== RESET Y BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            min-height: 100vh;
+            padding-bottom: 3rem;
+        }
+
+        /* ===== ENCABEZADO ===== */
+        header {
+            background: linear-gradient(135deg, #003366, #007bff);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+
+        /* ===== BUSCADOR ===== */
+        .buscador { max-width: 700px; margin: 0 auto 2rem; padding: 0 1rem; }
+        .buscador form {
+            display: flex;
+            gap: 0.5rem;
+            background: #fff;
+            padding: 0.75rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            align-items: center;
+        }
+        .buscador input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            background: #f4f7f6;
+            font-family: inherit;
+        }
+        .buscador button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .buscador button:hover { background: #0056b3; }
+        .buscador button:active { transform: scale(0.97); }
+
+        /* ===== ESTADO ===== */
+        .estado {
+            text-align: center;
+            color: #666;
+            margin: 1rem auto;
+            font-size: 1rem;
+            max-width: 700px;
+            padding: 0 1rem;
+        }
+
+        /* ===== RESULTADO ===== */
+        .resultados {
+            display: block;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .libro-detalle {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .libro-imagen img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            background: #f4f7f6;
+        }
+        .libro-info h2 {
+            color: #003366;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .libro-info p {
+            font-size: 1rem;
+            color: #444;
+            margin: 0.6rem 0;
+            line-height: 1.5;
+        }
+        .libro-info .autor { font-size: 1.1rem; color: #007bff; }
+        .descripcion {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f4f7f6;
+            border-left: 4px solid #007bff;
+            border-radius: 8px;
+        }
+        .descripcion strong {
+            color: #003366;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .descripcion p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .libro-info .ver-mas {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #007bff;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .libro-info .ver-mas:hover { background: #0056b3; }
+
+        @media (max-width: 700px) {
+            header h1 { font-size: 1.8rem; }
+            .buscador form { flex-direction: column; border-radius: 15px; }
+            .buscador input, .buscador button { width: 100%; border-radius: 10px; }
+            .libro-detalle { grid-template-columns: 1fr; padding: 1.5rem; }
+            .libro-imagen img { max-width: 250px; margin: 0 auto; display: block; }
+            .libro-info h2 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Buscador de Libros</h1>
+        <p>Explora diferentes tipos de libros usando la API de Google Books</p>
+    </header>
+
+    <!-- ========== SECCIÓN INFORMATIVA ========== -->
+<section class="info-api">
+    <div class="info-card">
+        <h2>¿Qué es una API?</h2>
+        <p>
+            Una <strong>API</strong> (Application Programming Interface o Interfaz de Programación de Aplicaciones) 
+            es un conjunto de reglas y protocolos que permite que dos aplicaciones se comuniquen entre sí. 
+            En pocas palabras, es como un <em>"mesero"</em> digital: tú haces una petición (el pedido), la API 
+            la lleva al servidor correspondiente, y te devuelve la respuesta con los datos que necesitas.
+        </p>
+        <p>
+            En el desarrollo web, las APIs son fundamentales porque permiten que tu página pueda obtener 
+            información en tiempo real desde otros servicios sin tener que almacenar todos los datos localmente.
+        </p>
+    </div>
+
+    <div class="info-card">
+        <h2>📚 La API que usamos: Google Books API</h2>
+        <p>
+            Para este buscador usamos la <strong>Google Books API</strong>, un servicio gratuito de Google 
+            que da acceso a un catálogo de más de <strong>40 millones de libros</strong> digitalizados. 
+            Esta API permite buscar por título, autor, ISBN o tema, y devuelve información como:
+        </p>
+        
+        <p>
+            <strong>Como se usa?</strong> Nuestra página envía una petición HTTPS al servidor de Google 
+            con el título del libro, y Google responde con un archivo JSON que contiene toda la información. 
+            Luego, nuestro código JavaScript procesa esa respuesta, filtra las ediciones más antiguas 
+            (para mostrar la fecha original real) y muestra el resultado en pantalla.
+        </p>
+    </div>
+</section>
+
+
+    <section class="buscador">
+        <form id="formulario-busqueda">
+            <input 
+                type="text" 
+                id="termino" 
+                placeholder="Busca un libro por su título..." 
+                required
+            >
+            <button type="submit">🔍 Buscar</button>
+        </form>
+    </section>
+
+    <div id="estado" class="estado"></div>
+    <section id="resultados" class="resultados"></section>
+
+    <script>
+        // ⚠️ REEMPLAZA ESTA CLAVE CON LA TUYA
+        const API_KEY = 'AIzaSyC6rKW8vW-Yc-UYKc4S4xemDejp7TB13zw';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('✅ Script de GOOGLE BOOKS cargado');
+
+            const formulario = document.getElementById('formulario-busqueda');
+            const inputTermino = document.getElementById('termino');
+            const contenedorResultados = document.getElementById('resultados');
+            const estado = document.getElementById('estado');
+
+            if (!formulario) {
+                console.error('❌ No se encontró el formulario');
+                return;
+            }
+
+            formulario.addEventListener('submit', async (evento) => {
+                evento.preventDefault();
+                const busqueda = inputTermino.value.trim();
+
+                if (!busqueda) {
+                    estado.textContent = 'Por favor, escribe un título para buscar.';
+                    return;
+                }
+
+                estado.textContent = `🔎 Buscando "${busqueda}"...`;
+                contenedorResultados.innerHTML = '';
+
+                try {
+                    // Buscamos con la frase exacta entre comillas
+                    const query = `intitle:"${busqueda}"`;
+                    const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=40&key=${API_KEY}`;
+
+                    console.log('🌐 URL:', url);
+
+                    const respuesta = await fetch(url);
+                    if (!respuesta.ok) throw new Error(`Error HTTP: ${respuesta.status}`);
+
+                    const datos = await respuesta.json();
+                    const items = datos.items;
+
+                    if (!items || items.length === 0) {
+                        estado.textContent = `😕 No se encontraron libros con el título "${busqueda}".`;
+                        return;
+                    }
+
+                    // Filtramos y ordenamos por fecha más antigua
+                    const librosValidos = items
+                        .filter(item => item.volumeInfo && item.volumeInfo.publishedDate)
+                        .sort((a, b) => {
+                            const fechaA = new Date(a.volumeInfo.publishedDate).getTime();
+                            const fechaB = new Date(b.volumeInfo.publishedDate).getTime();
+                            return fechaA - fechaB;
+                        });
+
+                    if (librosValidos.length === 0) {
+                        estado.textContent = `😕 No se encontraron libros con fecha válida.`;
+                        return;
+                    }
+
+                    const libro = librosValidos[0].volumeInfo;
+                    console.log('📖 Libro:', libro.title, '| Fecha:', libro.publishedDate);
+
+                    const titulo = libro.title || 'Título desconocido';
+                    const subtitulo = libro.subtitle ? ` — ${libro.subtitle}` : '';
+                    const autores = libro.authors ? libro.authors.join(', ') : 'Autor desconocido';
+                    const fechaPublicacion = libro.publishedDate || 'Fecha desconocida';
+                    const editorial = libro.publisher || 'Editorial desconocida';
+                    const paginas = libro.pageCount ? `${libro.pageCount} páginas` : 'N/D';
+                    const idioma = libro.language ? libro.language.toUpperCase() : 'N/D';
+
+                    let descripcion = libro.description || 'Sin descripción disponible.';
+                    if (descripcion.length > 700) {
+                        descripcion = descripcion.substring(0, 700) + '...';
+                    }
+
+                    let portadaUrl = 'https://via.placeholder.com/300x450?text=Sin+Portada';
+                    if (libro.imageLinks) {
+                        let img = libro.imageLinks.thumbnail || libro.imageLinks.smallThumbnail;
+                        if (img) {
+                            img = img.replace('http://', 'https://').replace('&zoom=1', '&zoom=2');
+                            portadaUrl = img;
+                        }
+                    }
+
+                    const enlaceLibro = libro.infoLink || libro.previewLink || '#';
+
+                    estado.textContent = '';
+
+                    const tarjeta = document.createElement('div');
+                    tarjeta.className = 'libro-detalle';
+                    tarjeta.innerHTML = `
+                        <div class="libro-imagen">
+                            <img src="${portadaUrl}" alt="Portada de ${titulo}">
+                        </div>
+                        <div class="libro-info">
+                            <h2>${titulo}${subtitulo}</h2>
+                            <p class="autor"><strong>✍️ Autor:</strong> ${autores}</p>
+                            <p><strong>📅 Primera publicación:</strong> ${fechaPublicacion}</p>
+                            <p><strong>🏢 Editorial:</strong> ${editorial}</p>
+                            <p><strong>📄 Páginas:</strong> ${paginas}</p>
+                            <p><strong>🌐 Idioma:</strong> ${idioma}</p>
+                            <div class="descripcion">
+                                <strong>📝 Descripción:</strong>
+                                <p>${descripcion}</p>
+                            </div>
+                            
+                        </div>
+                    `;
+
+                    contenedorResultados.appendChild(tarjeta);
+
+                } catch (error) {
+                    console.error('❌ Error al buscar libros:', error);
+                    estado.textContent = '❌ Ocurrió un error al buscar. Revisa la consola (F12).';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Presentación Personal</title>
+
+	<!-- Bootstrap 5 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Bootstrap iconos -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+	<style>
+		body {
+			background: linear-gradient(135deg, #0d3b8c 0%, #1e6fd9 50%, #4fa8ff 100%);
+			min-height: 100vh;
+			font-family: 'Segoe UI', sans-serif;
+			padding: 30px 15px;
+		}
+
+		.contenedor-presentacion {
+			max-width: 1100px;
+			margin: 0 auto;
+		}
+
+		.tarjeta-presentacion {
+			background: #ffffff;
+			border-radius: 25px;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+			padding: 40px;
+			margin-bottom: 30px;
+			/* Animación de entrada */
+			animation: fadeInUp 0.8s ease-out forwards;
+			opacity: 0;
+		}
+
+		.tarjeta-presentacion:nth-child(1) { animation-delay: 0.1s; }
+		.tarjeta-presentacion:nth-child(2) { animation-delay: 0.3s; }
+		.tarjeta-presentacion:nth-child(3) { animation-delay: 0.5s; }
+		.tarjeta-presentacion:nth-child(4) { animation-delay: 0.7s; }
+		.tarjeta-presentacion:nth-child(5) { animation-delay: 0.9s; }
+
+		@keyframes fadeInUp {
+			from { opacity: 0; transform: translateY(30px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		/* Encabezado con foto */
+		.encabezado-presentacion {
+			display: flex;
+			align-items: center;
+			gap: 30px;
+			flex-wrap: wrap;
+		}
+
+		.foto-perfil {
+			width: 160px;
+			height: 160px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 5px solid #1e6fd9;
+			box-shadow: 0 8px 20px rgba(30,111,217,0.3);
+			background: #e8f1ff;
+		}
+
+		.info-principal h1 {
+			color: #0d3b8c;
+			font-weight: 700;
+			margin-bottom: 5px;
+		}
+
+		.info-principal .carrera {
+			color: #1e6fd9;
+			font-size: 1.2rem;
+			font-weight: 600;
+		}
+
+		.info-principal .descripcion {
+			color: #555;
+			margin-top: 10px;
+		}
+
+		/* Secciones internas */
+		.seccion-titulo {
+			color: #0d3b8c;
+			font-weight: 700;
+			border-bottom: 3px solid #4fa8ff;
+			padding-bottom: 8px;
+			margin-bottom: 20px;
+			display: inline-block;
+		}
+
+		/* Tabla de datos personales */
+		.tabla-datos {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 10px;
+		}
+
+		.tabla-datos tr {
+			border-bottom: 1px dashed #e0e0e0;
+		}
+
+		.tabla-datos tr:last-child {
+			border-bottom: none;
+		}
+
+		.tabla-datos td {
+			padding: 14px 10px;
+			vertical-align: middle;
+		}
+
+		.tabla-datos td:first-child {
+			width: 45px;
+			color: #1e6fd9;
+			font-size: 1.4rem;
+			text-align: center;
+		}
+
+		.tabla-datos td:nth-child(2) {
+			width: 180px;
+			font-weight: 700;
+			color: #0d3b8c;
+		}
+
+		.tabla-datos td:last-child {
+			color: #444;
+		}
+
+		/* Badges de habilidades (los mantenemos por si acaso) */
+		.badge-habilidad {
+			display: inline-block;
+			background: #e8f1ff;
+			color: #0d3b8c;
+			padding: 8px 18px;
+			border-radius: 20px;
+			margin: 5px;
+			font-weight: 600;
+			border: 2px solid #4fa8ff;
+			transition: all 0.3s ease;
+		}
+
+		.badge-habilidad:hover {
+			background: #1e6fd9;
+			color: white;
+			transform: translateY(-3px);
+		}
+
+		/*  
+		   SECCIÓN DE HABILIDADES DINÁMICAS (NUEVO)
+		     */
+
+		.skills-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 25px 40px;
+			margin-top: 15px;
+		}
+
+		.skill {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.skill-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-weight: 700;
+			color: #0d3b8c;
+			font-size: 1rem;
+		}
+
+		.skill-header .skill-name {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.skill-header .skill-name i {
+			font-size: 1.2rem;
+		}
+
+		.skill-header .percentage {
+			color: #1e6fd9;
+			font-size: 0.9rem;
+			background: #e8f1ff;
+			padding: 2px 10px;
+			border-radius: 12px;
+		}
+
+		.skill-bar {
+			width: 100%;
+			height: 14px;
+			background-color: #e8f1ff;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+			position: relative;
+		}
+
+		.skill-progress {
+			height: 100%;
+			border-radius: 10px;
+			width: 0;
+			animation: fillBar 1.8s ease-out forwards;
+			animation-delay: 1s;
+			position: relative;
+			box-shadow: 0 0 10px rgba(30,111,217,0.4);
+			transition: filter 0.3s ease, transform 0.3s ease;
+		}
+
+		/* Efecto de brillo animado en las barras */
+		.skill-progress::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+			animation: shine 2.5s infinite;
+		}
+
+		@keyframes shine {
+			0% { transform: translateX(-100%); }
+			100% { transform: translateX(100%); }
+		}
+
+		@keyframes fillBar {
+			from { width: 0%; }
+			to { width: var(--target-width); }
+		}
+
+		/* Hover en cada barra */
+		.skill:hover .skill-progress {
+			filter: brightness(1.15);
+			transform: scaleY(1.15);
+		}
+
+		/* Colores específicos para cada tecnología */
+		.html-bar    { background: linear-gradient(90deg, #e34c26, #f06529); --target-width: 95%; }
+		.css-bar     { background: linear-gradient(90deg, #264de4, #2965f1); --target-width: 90%; }
+		.js-bar      { background: linear-gradient(90deg, #f0db4f, #f7df1e); --target-width: 85%; }
+		.python-bar  { background: linear-gradient(90deg, #306998, #ffd43b); --target-width: 80%; }
+		.node-bar    { background: linear-gradient(90deg, #3c873a, #68a063); --target-width: 75%; }
+		.sql-bar     { background: linear-gradient(90deg, #00758f, #f29111); --target-width: 85%; }
+		.bootstrap-bar { background: linear-gradient(90deg, #563d7c, #7952b3); --target-width: 88%; }
+		.git-bar     { background: linear-gradient(90deg, #f05032, #ff6b4a); --target-width: 80%; }
+
+		/* Redes sociales */
+		.redes-sociales a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 45px;
+			height: 45px;
+			background: #0d3b8c;
+			color: white;
+			border-radius: 50%;
+			margin-right: 10px;
+			font-size: 1.3rem;
+			text-decoration: none;
+			transition: all 0.3s ease;
+		}
+
+		.redes-sociales a:hover {
+			background: #4fa8ff;
+			transform: scale(1.15);
+		}
+
+		/* Responsive */
+		@media (max-width: 768px) {
+			.encabezado-presentacion {
+				flex-direction: column;
+				text-align: center;
+			}
+			.tarjeta-presentacion {
+				padding: 25px;
+			}
+			.tabla-datos td:nth-child(2) {
+				width: 120px;
+			}
+			/* Habilidades en una sola columna en móviles */
+			.skills-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body>
+
+<div class="contenedor-presentacion">
+
+	<!--  TARJETA PRINCIPAL  -->
+	<div class="tarjeta-presentacion">
+		<div class="encabezado-presentacion">
+
+			<img src="imagenes/foto.jpg" alt="Foto de perfil" class="foto-perfil">
+
+			<div class="info-principal">
+				<h1>Kevin Andres Caicedo Delgado</h1>
+				<p class="carrera">Estudiante de Desarrollo de Software</p>
+				<p class="descripcion">
+					Actualmente aprendiendo HTML5, CSS3, JavaScript y Python.
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+	<!--  DATOS PERSONALES (EN TABLA)  -->
+	<div class="tarjeta-presentacion">
+		<h3 class="seccion-titulo"><i class="bi bi-person-fill"></i> Datos Personales</h3>
+
+		<table class="tabla-datos">
+			<tr>
+				<td><i class="bi bi-person-badge-fill"></i></td>
+				<td>Nombre:</td>
+				<td>Kevin Andres Caicedo</td>
+			</tr>
+			<tr>
+				<td><i class="bi bi-calendar-event-fill"></i></td>
+				<td>Edad:</td>
+				<td>19 años</td>
+			</tr>
+			<tr>
+				<td><i class="bi bi-geo-alt-fill"></i></td>
+				<td>Ciudad:</td>
+				<td>Popayan, Colombia</td>
+			</tr>
+			<tr>
+				<td><i class="bi bi-envelope-fill"></i></td>
+				<td>Email:</td>
+				<td>k.caicedo@unimayor.edu.co</td>
+			</tr>
+			<tr>
+				<td><i class="bi bi-telephone-fill"></i></td>
+				<td>Teléfono:</td>
+				<td>+57 3234867587</td>
+			</tr>
+			<tr>
+				<td><i class="bi bi-mortarboard-fill"></i></td>
+				<td>Institución:</td>
+				<td>Institución universitaria Colegio Mayor Del Cauca</td>
+			</tr>
+			<tr>
+				<td><i class="bi bi-laptop-fill"></i></td>
+				<td>Programa:</td>
+				<td>Desarrollo de Software</td>
+			</tr>
+		</table>
+	</div>
+
+	<!--  SOBRE MÍ  -->
+	<div class="tarjeta-presentacion">
+		<h3 class="seccion-titulo"><i class="bi bi-info-circle-fill"></i> Sobre mí</h3>
+		<p>
+			Soy <strong>estudiante de Desarrollo de Software</strong> con gran interés en el desarrollo web
+			y la programación. Me considero una persona responsable, autodidacta y con muchas ganas
+			de aprender nuevas tecnologías. Mi objetivo es convertirme en un desarrollador full-stack
+			capaz de crear aplicaciones modernas, eficientes y con buen diseño.
+		</p>
+		<p class="mb-0">
+			Actualmente me encuentro fortaleciendo mis conocimientos en <strong>HTML5, CSS3, JavaScript,
+			Python y bases de datos</strong>, desarrollando proyectos prácticos que me permitan aplicar
+			lo aprendido y seguir creciendo profesionalmente.
+		</p>
+	</div>
+
+	<!--  HABILIDADES (NUEVO - DINÁMICO)  -->
+	<div class="tarjeta-presentacion">
+		<h3 class="seccion-titulo"><i class="bi bi-bar-chart-fill"></i> Habilidades Técnicas</h3>
+
+		<div class="skills-grid">
+
+			<!-- Habilidad: HTML -->
+			<div class="skill">
+				<div class="skill-header">
+					<span class="skill-name"><i class="bi bi-filetype-html" style="color:#e34c26;"></i> HTML5</span>
+					<span class="percentage">95%</span>
+				</div>
+				<div class="skill-bar">
+					<div class="skill-progress html-bar"></div>
+				</div>
+			</div>
+
+			<!-- Habilidad: CSS -->
+			<div class="skill">
+				<div class="skill-header">
+					<span class="skill-name"><i class="bi bi-filetype-css" style="color:#264de4;"></i> CSS3</span>
+					<span class="percentage">90%</span>
+				</div>
+				<div class="skill-bar">
+					<div class="skill-progress css-bar"></div>
+				</div>
+			</div>
+
+			<!-- Habilidad: JavaScript -->
+			<div class="skill">
+				<div class="skill-header">
+					<span class="skill-name"><i class="bi bi-filetype-js" style="color:#f0db4f;"></i> JavaScript</span>
+					<span class="percentage">85%</span>
+				</div>
+				<div class="skill-bar">
+					<div class="skill-progress js-bar"></div>
+				</div>
+			</div>
+
+			<!-- Habilidad: Python -->
+			<div class="skill">
+				<div class="skill-header">
+					<span class="skill-name"><i class="bi bi-filetype-py" style="color:#306998;"></i> Python</span>
+					<span class="percentage">80%</span>
+				</div>
+				<div class="skill-bar">
+					<div class="skill-progress python-bar"></div>
+				</div>
+			</div>
+
+			<!-- Habilidad: Node.js -->
+			<div class="skill">
+				<div class="skill-header">
+					<span class="skill-name"><i class="bi bi-server" style="color:#3c873a;"></i> Node.js</span>
+					<span class="percentage">75%</span>
+				</div>
+				<div class="skill-bar">
+					<div class="skill-progress node-bar"></div>
+				</div>
+			</div>
+
+			<!-- Habilidad: SQL -->
+			<div class="skill">
+				<div class="skill-header">
+					<span class="skill-name"><i class="bi bi-database-fill" style="color:#00758f;"></i> SQL / BD</span>
+					<span class="percentage">85%</span>
+				</div>
+				<div class="skill-bar">
+					<div class="skill-progress sql-bar"></div>
+				</div>
+			</div>
+
+			<!-- Habilidad: Bootstrap -->
+			<div class="skill">
+				<div class="skill-header">
+					<span class="skill-name"><i class="bi bi-bootstrap-fill" style="color:#7952b3;"></i> Bootstrap</span>
+					<span class="percentage">88%</span>
+				</div>
+				<div class="skill-bar">
+					<div class="skill-progress bootstrap-bar"></div>
+				</div>
+			</div>
+
+			<!-- Habilidad: Git -->
+			<div class="skill">
+				<div class="skill-header">
+					<span class="skill-name"><i class="bi bi-git" style="color:#f05032;"></i> Git / GitHub</span>
+					<span class="percentage">80%</span>
+				</div>
+				<div class="skill-bar">
+					<div class="skill-progress git-bar"></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!--  REDES SOCIALES  -->
+	<div class="tarjeta-presentacion text-center">
+		<h3 class="seccion-titulo"><i class="bi bi-share-fill"></i> Contacto</h3>
+		<div class="redes-sociales">
+			<a href="https://github.com/tuusuario" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+			<a href="https://linkedin.com/in/tuusuario" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+			<a href="mailto:tucorreo@ejemplo.com" title="Email"><i class="bi bi-envelope-fill"></i></a>
+			<a href="https://wa.me/573000000000" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+			<a href="https://instagram.com/tuusuario" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+		</div>
+	</div>
+
+</div>
+
+</body>
+</html>

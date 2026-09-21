@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- TEMA 6: Favicon -->
+    <link rel="icon" type="image/png" href="imagenes/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="imagenes/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+
+    <!-- TEMA 4: CSS externo -->
+    <link rel="stylesheet" type="text/css" href="css/estilo2.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="imagenes/encabezadoia.png" width="100%" height="300px" alt="Encabezado">
+    </header>
+
+    <section>
+
+        <!-- TEMA 7: BORDES REDONDEADOS -->
+        <h1>bordes</h1>
+
+        <div id="redondear">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam saepe odit nesciunt tempore doloribus sunt
+            recusandae, aut est, fugiat dolore fugit corporis voluptate deleniti voluptatibus, adipisci eius illo.
+            Velit, quae.
+        </div>
+
+        <!-- TU BLOQUE 1 -->
+        <div>Bloque1
+            <br>
+            Este bloque (o &lt;div&gt;) contiene varias líneas de texto
+            <br>
+            <p>Estas dos líneas están separadas entre sí utilizando las etiquetas &lt;br&gt; y &lt;p&gt;,
+                ambas están contenidas dentro del mismo &lt;div&gt;.</p>
+        </div>
+
+        <!--   TU BLOQUE 2 ORIGINAL   -->
+        <div id="bloque2">bloque2<img src="imagenes/calavera.png" width="10%" height="10%" alt="calavera"></div>
+
+        <!--   TU BLOQUE 3 ORIGINAL (float)   -->
+        <div id="bloque3">bloque3 (contiene dos &lt;divs&gt; ubicados con float:left)
+            <img src="imagenes/iconois.jpeg" width="20%" height="20%" alt="icono">
+            <img src="imagenes/images.jpg" width="20%" height="20%" alt="imagen">
+        </div>
+
+        <!--   TU IFRAME ORIGINAL (Tema 17)   -->
+        <h1>videos</h1>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/hZyYygF0RiM?si=VBIp38BbrqM-5qZC"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+        <!--      
+             A PARTIR DE AQUÍ SE AÑADEN LOS TEMAS NUEVOS
+                   -->
+
+        <!-- TEMA 8: SOMBRAS   -->
+        <h1>Tema 8: Sombras</h1>
+        <div class="caja-sombra">Caja con <strong>box-shadow</strong></div>
+        <p class="texto-sombra">Texto de sombra con <strong>text-shadow</strong></p>
+
+        <!-- TEMA 9: FONDOS   -->
+        <h1>Tema 9: Imágenes de fondo</h1>
+        <div class="caja-fondo">
+            Este bloque tiene una imagen de fondo con <code>background-size: cover</code>.
+        </div>
+        <div class="caja-fondo-multiple">
+            Este bloque tiene <strong>varias capas de fondo</strong> superpuestas.
+        </div>
+
+        <!--   TEMA 10: TIPOGRAFÍAS   -->
+        <h1>Tema 10: Tipografías</h1>
+        <p class="fuente-poppins">Este texto usa la fuente <strong>Poppins</strong> de Google Fonts.</p>
+        <p class="fuente-roboto">Este texto usa la fuente <strong>Roboto</strong> de Google Fonts.</p>
+
+        <!--   TEMA 11: FLOAT (complementario al tuyo)   -->
+        <h1>Tema 11: Float con clear</h1>
+        <div class="contenedor-float">
+            <div class="caja-float">Caja 1 (float:left)</div>
+            <div class="caja-float">Caja 2 (float:left)</div>
+            <div class="caja-float">Caja 3 (float:left)</div>
+            <div class="clear"></div>
+        </div>
+
+        <!-- TEMA 12: CENTRAR CONTENIDO -->
+        <h1>Tema 12: Centrar el contenido</h1>
+        <div class="caja-centrada">Caja centrada con margin: 0 auto</div>
+        <p class="texto-centrado">Texto centrado con text-align: center</p>
+
+        <!--   TEMA 13: FLEX   -->
+        <h1>Tema 13: Flex</h1>
+        <div class="contenedor-flex">
+            <div class="item-flex">Item 1</div>
+            <div class="item-flex">Item 2</div>
+            <div class="item-flex">Item 3</div>
+        </div>
+
+        <!--   TEMA 14: POSITION   -->
+        <h1>Tema 14: Posición de los elementos</h1>
+        <div class="caja-relative">
+            Caja con position: relative
+            <div class="caja-absolute">position: absolute</div>
+        </div>
+
+        <!--   TEMA 15: TRANSFORM   -->
+        <h1>Tema 15: Transformaciones</h1>
+        <div class="caja-transform">Pasa el ratón por encima</div>
+
+        <!-- FORMULARIO   -->
+        <h1>Tema 16: Formularios</h1>
+        <form action="pagina1.php" method="post">
+            <table>
+                <tr>
+                    <th colspan="2"></th>
+                </tr>
+                <tr>
+                    <th>nombre</th>
+                    <td><input type="text" name="nombre"></td>
+                </tr>
+                <tr>
+                    <th>apellido</th>
+                    <td><input type="text" name="apellido"></td>
+                </tr>
+                <tr>
+                    <th>login</th>
+                    <td><input type="text" name="login"></td>
+                </tr>
+                <tr>
+                    <th>clave</th>
+                    <td><input type="password" name="clave"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="enviar"></td>
+                    <td><input type="reset"></td>
+                </tr>
+                
+            </table> 
+            
+        </form>
+
+        <!--   TEMA 18: TRANSICIONES   -->
+        <h1>Tema 18: Transiciones</h1>
+        <button class="boton-transicion">Pasa el ratón</button>
+
+        <!--   TEMA 19: COLUMNAS  -->
+        <h1>Tema 19: Columnas de texto</h1>
+        <div class="texto-columnas">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
+            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+
+        <!-- TEMA 20: VÍDEO LOCAL -->
+        <h1>Tema 20: Vídeo local</h1>
+        <video controls width="480">
+            <source src="audio-video/videosps.mp4" type="video/mp4">
+        </video>
+
+        <!--   TEMA 21: AUDIO   -->
+        <h1>Tema 21: Audio</h1>
+        <audio controls>
+            <source src="audio-video/Cali Pachanguero.mpeg" type="audio/mpeg">
+            <source src="audios/mi-audio.ogg" type="audio/ogg">
+        </audio>
+
+        <!--   TEMA 22: TRANSPARENCIAS Y DEGRADADOS   -->
+        <h1>Tema 22: Transparencias y degradados</h1>
+        <div class="caja-transparente">Caja con rgba (transparencia)</div>
+        <div class="caja-degradado">Caja con degradado lineal</div>
+        <div class="caja-degradado-radial">Caja con degradado radial</div>
+
+        <!--   TEMA 23: ANIMACIONES   -->
+        <h1>Tema 23: Animaciones</h1>
+        <div class="caja-animada">Animación infinita</div>
+
+        <!--   TEMA 24: SVG   -->
+        <h1>Tema 24: SVG</h1>
+        <svg width="150" height="150" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="tomato" stroke="black" stroke-width="3" />
+            <rect x="20" y="20" width="30" height="30" fill="gold" />
+        </svg>
+
+        <!--   TEMA 25: CANVAS   -->
+        <h1>Tema 25: Canvas</h1>
+        <canvas id="lienzo" width="300" height="150"></canvas>
+
+        <!--   TEMA 27: CONTENIDO EDITABLE   -->
+        <h1>Tema 27: Contenido editable</h1>
+        <div contenteditable="true" class="caja-editable">
+            Puedes editar este texto directamente en el navegador. Haz clic aquí y escribe.
+        </div>
+
+        <!--   TEMA 28: STORAGE   -->
+        <h1>Tema 28: Storage</h1>
+        <input type="text" id="inputStorage" placeholder="Escribe algo...">
+        <button onclick="guardarDato()">Guardar</button>
+        <button onclick="leerDato()">Leer</button>
+        <button onclick="borrarDato()">Borrar</button>
+        <p id="resultadoStorage"></p>
+
+    </section>
+
+    <aside></aside>
+
+    <!--   TEMA 25 + 28: JavaScript   -->
+    <script>
+        // TEMA 25: Canvas
+        const ctx = document.getElementById('lienzo').getContext('2d');
+        ctx.fillStyle = 'skyblue';
+        ctx.fillRect(20, 20, 200, 100);
+        ctx.fillStyle = 'tomato';
+        ctx.beginPath();
+        ctx.arc(250, 75, 40, 0, Math.PI * 2);
+        ctx.fill();
+
+        // TEMA 28: Storage
+        function guardarDato() {
+            const valor = document.getElementById('inputStorage').value;
+            localStorage.setItem('datoUsuario', valor);
+            document.getElementById('resultadoStorage').textContent = 'Guardado: ' + valor;
+        }
+        function leerDato() {
+            const valor = localStorage.getItem('datoUsuario');
+            document.getElementById('resultadoStorage').textContent =
+                valor ? 'Leído: ' + valor : 'No hay nada guardado';
+        }
+        function borrarDato() {
+            localStorage.removeItem('datoUsuario');
+            document.getElementById('resultadoStorage').textContent = 'Dato borrado';
+        }
+    </script>
+
+</body>
+
+</html>

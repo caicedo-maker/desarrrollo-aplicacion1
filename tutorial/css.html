@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoría del CSS</title>
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --dark-blue: #003366;
+            --bg-body: #f0f4f8;
+            --text-dark: #333;
+            --text-light: #666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        /* --- ENCABEZADO CON GRADIENTE --- */
+        header {
+            background: linear-gradient(135deg, #003366 0%, #007bff 100%);
+            color: white;
+            text-align: center;
+            padding: 70px 20px 90px 20px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL Y TARJETAS --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            color: var(--dark-blue);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary-blue);
+            padding-left: 15px;
+        }
+
+        .card p, .card ul {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .card ul {
+            margin-left: 20px;
+        }
+
+        /* --- ETIQUETAS DE TECNOLOGÍAS --- */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: #e7f1ff;
+            color: var(--primary-blue);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* --- BLOQUE DE CÓDIGO --- */
+        .code-block {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 20px;
+            border-left: 5px solid #e83e8c; /* Rosa para diferenciar CSS */
+            white-space: pre;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado con Gradiente -->
+    <header>
+        <h1>Teoría del CSS</h1>
+        <p>La capa de diseño y estilo visual de la web</p>
+    </header>
+
+    <!-- Contenido en Tarjetas -->
+    <div class="container">
+        
+        <div class="card">
+            <h2>¿Qué es el CSS?</h2>
+            <p>CSS (Cascading Style Sheets o Hojas de Estilo en Cascada) es el lenguaje que se utiliza para describir la presentación visual de un documento HTML. Mientras que HTML se encarga de la estructura y el contenido, CSS se encarga de los colores, tipografías, tamaños, márgenes, animaciones y la disposición de los elementos en la pantalla.</p>
+        </div>
+
+        <div class="card">
+            <h2>¿Para qué sirve?</h2>
+            <p>Sirve para separar el contenido (HTML) de la presentación visual. Sus objetivos principales son:</p>
+            <ul>
+                <li>Dar estilo y personalidad a una página web (colores, fuentes, fondos).</li>
+                <li>Controlar el diseño y la maquetación (columnas, grid, flexbox).</li>
+                <li>Adaptar la página a diferentes dispositivos (diseño responsive).</li>
+                <li>Añadir interactividad visual (transiciones, animaciones, efectos hover).</li>
+                <li>Mejorar la experiencia del usuario y la accesibilidad.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Tecnologías y conceptos que utiliza</h2>
+            <ul>
+                <li><strong>Selectores:</strong> Etiquetas, clases, IDs para seleccionar elementos HTML.</li>
+                <li><strong>Propiedades:</strong> Color, margin, padding, font-size, display, etc.</li>
+                <li><strong>Modelo de Caja (Box Model):</strong> Content, padding, border, margin.</li>
+                <li><strong>Flexbox y Grid:</strong> Sistemas modernos de maquetación.</li>
+                <li><strong>Media Queries:</strong> Para diseño responsive.</li>
+                <li><strong>Preprocesadores:</strong> SASS, LESS (para CSS más avanzado).</li>
+                <li><strong>Frameworks:</strong> Bootstrap, Tailwind CSS.</li>
+            </ul>
+            <div class="tags">
+                <span class="tag">Selectores</span>
+                <span class="tag">Flexbox</span>
+                <span class="tag">Grid</span>
+                <span class="tag">Media Queries</span>
+                <span class="tag">Bootstrap</span>
+                <span class="tag">Tailwind</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Ejemplo en Código</h2>
+            <p>Este es un ejemplo básico de cómo se aplica CSS a un documento HTML. Se selecciona una clase y se le aplican estilos de color, tamaño y bordes redondeados.</p>
+            <div class="code-block">
+/* archivo: estilos.css */
+
+/* Estilo general del cuerpo */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Estilo de una tarjeta */
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    width: 300px;
+    text-align: center;
+}
+
+/* Título dentro de la tarjeta */
+.card h2 {
+    color: #003366;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Botón con efecto hover */
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

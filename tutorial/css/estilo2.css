@@ -1,0 +1,617 @@
+/* ============================================================
+   ESTILOS BASE / RESET
+   TEMA 4 y 5: Introducción y propiedades CSS más utilizadas
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* TEMA 9: Fondo general de la página */
+    background-color: #f4f4f4;
+    background-image: url("../imagenes/fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+
+    /* TEMA 10: Tipografía general */
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   TEMA 1: ESTRUCTURA SEMÁNTICA
+   TEMA 8: Sombra de texto
+   ============================================================ */
+
+header {
+    width: 100%;
+}
+
+header img {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* ============================================================
+   TEMA 3: LISTAS Y ENLACES
+   TEMA 13: FLEX
+   TEMA 14: POSITION (sticky)
+   TEMA 18: Transiciones
+   ============================================================ */
+
+nav {
+    background-color: #222;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4); /* TEMA 8 */
+}
+
+nav ul {
+    display: flex;                /* TEMA 13: FLEX */
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    gap: 5px;
+    padding: 10px;
+}
+
+nav ul li a {
+    color: #eee;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease; /* TEMA 18 */
+}
+
+nav ul li a:hover {
+    background-color: #ff7e5f;
+    color: white;
+}
+
+/* ============================================================
+   SECTION: contenedor principal
+   ============================================================ */
+
+section {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+section h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #1e3c72;
+    border-bottom: 3px solid #ff7e5f;
+    padding-bottom: 8px;
+    margin: 30px 0 15px 0;
+    font-size: 1.5rem;
+}
+
+/* ============================================================
+   TEMA 7: BORDES REDONDEADOS
+   ============================================================ */
+
+#redondear {
+    background: #e0f7fa;
+    padding: 20px;
+    border: 3px solid #0097a7;
+    border-radius: 20px 5px 20px 5px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* TEMA 8 */
+}
+
+/* ============================================================
+   TUS BLOQUES ORIGINALES (bloque1, bloque2, bloque3)
+   ============================================================ */
+
+/* Bloque genérico (bloque1) */
+section > div {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* TEMA 9: Fondo para bloque2 */
+#bloque2 {
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* TEMA 11: Float en bloque3 */
+#bloque3 {
+    background: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    overflow: hidden; /* contiene los float */
+}
+
+#bloque3 img {
+    float: left;
+    margin: 5px;
+    border-radius: 6px;
+}
+
+/* ============================================================
+   TEMA 17: IFRAME
+   ============================================================ */
+
+iframe {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 15px auto;
+}
+
+/* ============================================================
+   TEMA 8: SOMBRAS
+   ============================================================ */
+
+.caja-sombra {
+    background: #fff3e0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 15px;
+}
+
+.texto-sombra {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #444;
+    text-shadow: 3px 3px 5px rgba(255, 100, 50, 0.6);
+}
+
+/* ============================================================
+   TEMA 9: FONDOS (cajas)
+   ============================================================ */
+
+.caja-fondo {
+    background-image: url("../imagenes/fondo-caja.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 40px 20px;
+    border-radius: 10px;
+    text-shadow: 1px 1px 4px black;
+    margin-bottom: 15px;
+    background-color: #1e3c72; /* color de respaldo si no carga la imagen */
+}
+
+.caja-fondo-multiple {
+    background-image:
+        url("../imagenes/capa-superior.png"),
+        linear-gradient(135deg, #ff7e5f, #feb47b);
+    background-position: right bottom, center;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 80px, cover;
+    color: white;
+    padding: 40px 20px;
+    border-radius: 10px;
+    text-shadow: 1px 1px 4px black;
+}
+
+/* ============================================================
+   TEMA 10: TIPOGRAFÍAS
+   ============================================================ */
+
+.fuente-poppins {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #c2185b;
+}
+
+.fuente-roboto {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #00796b;
+}
+
+/* ============================================================
+   TEMA 11: FLOAT (cajas nuevas)
+   ============================================================ */
+
+.contenedor-float {
+    overflow: hidden;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.caja-float {
+    float: left;
+    width: 30%;
+    margin: 1.5%;
+    padding: 20px;
+    background: #ffe082;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.clear {
+    clear: both; /* TEMA 11: arreglador de desastres */
+}
+
+/* ============================================================
+   TEMA 12: CENTRAR EL CONTENIDO
+   ============================================================ */
+
+.caja-centrada {
+    width: 300px;
+    margin: 0 auto;
+    background: #b3e5fc;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.texto-centrado {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #0277bd;
+}
+
+/* ============================================================
+   TEMA 13: FLEX
+   ============================================================ */
+
+.contenedor-flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.item-flex {
+    background: #4caf50;
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    flex: 1 1 150px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ============================================================
+   TEMA 14: POSITION
+   ============================================================ */
+
+.caja-relative {
+    position: relative;
+    background: #ede7f6;
+    padding: 40px 20px;
+    border-radius: 10px;
+    height: 150px;
+}
+
+.caja-absolute {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #673ab7;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* ============================================================
+   TEMA 15: TRANSFORM
+   ============================================================ */
+
+.caja-transform {
+    width: 200px;
+    padding: 30px;
+    background: #ff5722;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+
+.caja-transform:hover {
+    transform: scale(1.2) rotate(5deg) translateY(-10px);
+}
+
+/* ============================================================
+   TEMA 16: FORMULARIOS
+   ============================================================ */
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formulario label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.formulario input {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.formulario input:focus {
+    outline: none;
+    border-color: #1e3c72;
+}
+
+.formulario input:valid {
+    border-color: #4caf50;
+}
+
+.formulario input:invalid:not(:placeholder-shown) {
+    border-color: #f44336;
+}
+
+.formulario input[type="submit"] {
+    background: #1e3c72;
+    color: white;
+    cursor: pointer;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.formulario input[type="submit"]:hover {
+    background: #ff7e5f;
+}
+
+/* ============================================================
+   TEMA 18: TRANSICIONES
+   ============================================================ */
+
+.boton-transicion {
+    background: #1e3c72;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease;
+}
+
+.boton-transicion:hover {
+    background: #ff7e5f;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   TEMA 19: COLUMNAS DE TEXTO
+   ============================================================ */
+
+.texto-columnas {
+    column-count: 3;
+    column-gap: 30px;
+    column-rule: 2px solid #ff7e5f;
+    text-align: justify;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* ============================================================
+   TEMA 20 y 21: VÍDEO Y AUDIO
+   ============================================================ */
+
+video, audio {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    display: block;
+    margin: 15px 0;
+}
+
+/* ============================================================
+   TEMA 22: TRANSPARENCIAS Y DEGRADADOS
+   ============================================================ */
+
+.caja-transparente {
+    background: rgba(30, 60, 114, 0.6);
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.caja-degradado {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.caja-degradado-radial {
+    background: radial-gradient(circle, #feb47b, #ff7e5f, #1e3c72);
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+/* ============================================================
+   TEMA 23: ANIMACIONES
+   ============================================================ */
+
+@keyframes mover {
+    0%   { transform: translateX(0) rotate(0deg); background: #1e3c72; }
+    50%  { transform: translateX(200px) rotate(180deg); background: #ff7e5f; }
+    100% { transform: translateX(0) rotate(360deg); background: #1e3c72; }
+}
+
+.caja-animada {
+    width: 120px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    animation: mover 4s ease-in-out infinite;
+    font-weight: bold;
+}
+
+/* ============================================================
+   TEMA 24: SVG
+   ============================================================ */
+
+svg {
+    display: block;
+    margin: 15px auto;
+}
+
+/* ============================================================
+   TEMA 25: CANVAS
+   ============================================================ */
+
+canvas {
+    border: 2px dashed #1e3c72;
+    border-radius: 10px;
+    display: block;
+    margin: 15px auto;
+    background: #fafafa;
+}
+
+/* ============================================================
+   TEMA 27: CONTENIDO EDITABLE
+   ============================================================ */
+
+.caja-editable {
+    background: #fffde7;
+    border: 2px dashed #fbc02d;
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 80px;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.caja-editable:focus {
+    background: #fff9c4;
+    border-color: #f57f17;
+}
+
+/* ============================================================
+   TEMA 28: STORAGE
+   ============================================================ */
+
+#inputStorage {
+    padding: 8px 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-right: 8px;
+}
+
+#storage button,
+section button {
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 6px;
+    border: none;
+    background: #1e3c72;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+section button:hover {
+    background: #ff7e5f;
+}
+
+#resultadoStorage {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #1e3c72;
+}
+
+/* ============================================================
+   ASIDE
+   ============================================================ */
+
+aside {
+    background: #263238;
+    color: #eceff1;
+    padding: 20px;
+    text-align: center;
+    min-height: 50px;
+}
+
+/* ============================================================
+   TEMA 26: MEDIAQUERIES (adaptación a móviles)
+   ============================================================ */
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .texto-columnas {
+        column-count: 1;
+    }
+
+    .caja-float {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    section h1 {
+        font-size: 1.2rem;
+    }
+
+    .caja-centrada {
+        width: 100%;
+    }
+
+    iframe {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-flex {
+        flex-direction: column;
+    }
+
+    .formulario label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}

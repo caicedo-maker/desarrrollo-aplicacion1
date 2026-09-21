@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teoría Web - Evolución de Sistemas</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --dark-blue: #003366;
+            --bg-body: #f0f4f8;
+            --text-dark: #333;
+            --text-light: #666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 50px;
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .header-conceptos {
+            background: linear-gradient(135deg, #003366 0%, #007bff 100%);
+            color: white;
+            text-align: center;
+            padding: 70px 20px 90px 20px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-conceptos::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        .header-conceptos h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .header-conceptos p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .container-conceptos {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .accordion-item {
+            background: white;
+            border: none;
+            border-radius: 20px !important;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:nth-child(1) { animation-delay: 0.2s; }
+        .accordion-item:nth-child(2) { animation-delay: 0.4s; }
+        .accordion-item:nth-child(3) { animation-delay: 0.6s; }
+        .accordion-item:nth-child(4) { animation-delay: 0.8s; }
+
+        .accordion-item:hover {
+            box-shadow: 0 10px 30px rgba(0,123,255,0.15);
+        }
+
+        .accordion-button {
+            background: white;
+            color: var(--dark-blue);
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 20px 25px;
+            border: none;
+            border-radius: 20px !important;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            box-shadow: none;
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            filter: brightness(0) invert(1);
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: transparent;
+        }
+
+        .accordion-button:hover {
+            background: #e7f1ff;
+        }
+
+        .accordion-button:not(.collapsed):hover {
+            background: linear-gradient(135deg, #0056b3 0%, #003d80 100%);
+        }
+
+        .accordion-button .icon-title {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+
+        .accordion-body {
+            padding: 30px;
+            background: #fafcff;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            display: flow-root;
+        }
+
+        .accordion-body img {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            float: left;
+            width: 38%;
+            height: auto;
+            margin: 0 25px 15px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .accordion-body img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 30px rgba(0,123,255,0.25);
+        }
+
+        .accordion-body h5 {
+            color: var(--dark-blue);
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 4px solid var(--primary-blue);
+            font-size: 1.15rem;
+        }
+
+        .accordion-body p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .accordion-body ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 15px;
+            display: flow-root;
+        }
+
+        .accordion-body ul li {
+            position: relative;
+            padding: 10px 15px 10px 45px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            overflow: hidden;
+        }
+
+        .accordion-body ul li::before {
+            content: '✔';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.1rem;
+            background: #e7f1ff;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .accordion-body ul li:hover {
+            transform: translateX(8px);
+            background: #e7f1ff;
+            box-shadow: 0 5px 15px rgba(0,123,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .header-conceptos h1 { font-size: 2rem; }
+            .header-conceptos p { font-size: 1rem; }
+            .accordion-body { padding: 20px; }
+            .accordion-body img {
+                float: none !important;
+                width: 100% !important;
+                margin: 0 0 20px 0 !important;
+            }
+            .accordion-body ul li {
+                padding: 10px 15px 10px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-conceptos">
+        <h1>Evolución de Sistemas Computacionales</h1>
+        <p>Desde los mainframes hasta la arquitectura multinivel moderna</p>
+    </header>
+
+    <div class="container-conceptos">
+
+        <div class="accordion" id="accordionExample">
+
+            <!-- ================= MAINFRAME ================= -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="bi bi-hdd-stack-fill icon-title"></i> MainFrame
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <img src="imagenes/mainframe.jpeg" alt="Mainframe">
+
+                        <p><strong>Un mainframe</strong> es una computadora de alto rendimiento diseñada para procesar grandes volúmenes de datos y transacciones de forma masiva, simultánea y con la máxima seguridad y fiabilidad. Lejos de ser una tecnología obsoleta, es un pilar fundamental en la infraestructura de las grandes organizaciones, manejando más del 70% de las cargas de trabajo transaccionales del mundo.</p>
+
+                        <h5>¿Cómo funciona un mainframe moderno?</h5>
+                        <ul>
+                            <li><strong>Arquitectura especializada:</strong> Los mainframes modernos no son una sola CPU, sino un complejo de procesadores centrales (CPC). Este sistema incluye procesadores dedicados para tareas específicas como el cifrado de datos, la compresión o la gestión de la entrada/salida de información, lo que libera a los procesadores principales para el trabajo crítico.</li>
+                            <li><strong>Virtualización y sistemas operativos:</strong> Son pioneros en virtualización. Pueden ejecutar múltiples sistemas operativos a la vez, como <strong>z/OS</strong>, <strong>Linux</strong> y otros, en cientos o miles de máquinas virtuales.</li>
+                            <li><strong>Procesamiento de transacciones:</strong> Están optimizados para manejar millones de transacciones por segundo con tiempos de respuesta de microsegundos.</li>
+                        </ul>
+
+                        <h5>Características y ventajas</h5>
+                        <ul>
+                            <li><strong>Fiabilidad extrema:</strong> Tiempo de actividad del <strong>99.99999%</strong> (solo segundos de inactividad al año).</li>
+                            <li><strong>Seguridad integrada:</strong> Tarjetas criptográficas integradas y detección de intrusiones en hardware.</li>
+                            <li><strong>Potencia y escala:</strong> Un solo mainframe puede procesar hasta <strong>1 billón de transacciones web seguras al día</strong>.</li>
+                        </ul>
+
+                        <h5>Su nuevo rol en la era de la IA</h5>
+                        <ul>
+                            <li><strong>IA integrada en el chip:</strong> Procesadores como el IBM Telum II llevan aceleradores de IA integrados para detección de fraudes en tiempo real.</li>
+                            <li><strong>Pilar de la nube híbrida:</strong> Se integran perfectamente con nubes públicas a través de APIs.</li>
+                            <li><strong>Eficiencia y sostenibilidad:</strong> Ocupan hasta un 75% menos de espacio y reducen el consumo eléctrico hasta un 40%.</li>
+                        </ul>
+
+                        <p class="mb-0">En resumen, el mainframe ha evolucionado de ser el "cerebro" central de las empresas a ser el "corazón" seguro, fiable y potente que impulsa la economía digital moderna y la próxima generación de aplicaciones de IA.</p>
+
+                        <div style="clear:both;"></div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TERMINAL BRUTA ================= -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="bi bi-terminal-fill icon-title"></i> Terminal Bruta
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <img src="imagenes/terminal-bruta.jpg" alt="Terminal bruta">
+
+                        <h5>¿Qué es una Terminal Bruta?</h5>
+                        <ul>
+                            <li><strong>Definición:</strong> Una <strong>terminal bruta</strong> (también conocida como <strong>terminal 3270</strong> o <strong>terminal tonta</strong>) es un dispositivo de acceso a un mainframe que <strong>no procesa datos localmente</strong>. Su única función es enviar y recibir información del núcleo central, actuando como una "ventana" al sistema principal.</li>
+                            <li><strong>Arquitectura cliente-servidor pura:</strong> Toda la lógica, el procesamiento y el almacenamiento residen en el mainframe. La terminal solo muestra la información y captura la entrada del usuario, lo que la hace extremadamente segura y fácil de mantener.</li>
+                            <li><strong>Comunicación por bloques:</strong> A diferencia de los terminales modernos que transmiten carácter por carácter, las terminales 3270 transmiten <strong>pantallas completas</strong> (bloques de datos), lo que reduce drásticamente el tráfico de red y mejora la eficiencia.</li>
+                        </ul>
+
+                        <h5>Características técnicas</h5>
+                        <ul>
+                            <li><strong>Sin capacidad de cómputo local:</strong> No tienen CPU ni memoria propia para procesar aplicaciones; dependen completamente del mainframe.</li>
+                            <li><strong>Fiabilidad extrema:</strong> Pueden mantener sesiones persistentes que duran <strong>años sin reinicio</strong>, con tiempos de actividad del 99.99999%.</li>
+                            <li><strong>Seguridad por hardware:</strong> Incorporan cifrado y autenticación integrados en el propio dispositivo, con soporte para TLS 1.3 y conexiones FTPS.</li>
+                            <li><strong>Formato de pantalla:</strong> Pantalla de <strong>1920 caracteres</strong> (24 líneas × 80 columnas) con campos protegidos y no protegidos para entrada de datos.</li>
+                        </ul>
+
+                        <h5>Evolución hacia 2026</h5>
+                        <ul>
+                            <li><strong>Emulación TN3270:</strong> Hoy en día, la mayoría de las "terminales brutas" son <strong>emulaciones software</strong> que se ejecutan en navegadores web o aplicaciones de escritorio, conectándose al mainframe vía TCP/IP.</li>
+                            <li><strong>Integración con IA:</strong> Las terminales modernas incorporan <strong>asistentes predictivos</strong> que sugieren comandos y autocompletan campos basados en patrones históricos.</li>
+                            <li><strong>Nube híbrida:</strong> Las terminales brutas ahora pueden conectarse tanto a mainframes físicos como a <strong>mainframes virtualizados</strong> en la nube, manteniendo la misma experiencia de usuario.</li>
+                            <li><strong>Acceso universal:</strong> Desde cualquier dispositivo con navegador, manteniendo la seguridad y fiabilidad del mainframe tradicional.</li>
+                        </ul>
+
+                        <h5>Datos técnicos de una terminal bruta típica</h5>
+                        <ul>
+                            <li><strong>Protocolo:</strong> TN3270E sobre TCP/IP</li>
+                            <li><strong>Modo de pantalla:</strong> Modo 4 (24×80) o Modo 5 (32×80)</li>
+                            <li><strong>Codificación:</strong> EBCDIC (convertido a ASCII en la emulación)</li>
+                            <li><strong>Latencia típica:</strong> &lt; 2ms en redes corporativas</li>
+                            <li><strong>Uptime promedio:</strong> 99.99999% (≈ 3 segundos de inactividad al año)</li>
+                        </ul>
+
+                        <p class="mb-0">En conclusión, la terminal bruta no es un dispositivo obsoleto, sino una <strong>interfaz especializada y optimizada</strong> que ha evolucionado para seguir siendo el estándar de acceso a los sistemas mainframe más críticos del mundo, ahora potenciada con tecnologías modernas como la IA y la nube híbrida.</p>
+
+                        <div style="clear:both;"></div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= CLIENTE SERVIDOR ================= -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="bi bi-diagram-3-fill icon-title"></i> Cliente Servidor
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <img src="imagenes/cliente-servidor.jpg" alt="Cliente servidor">
+
+                        <h5>¿Qué es la Arquitectura Cliente-Servidor Multinivel?</h5>
+                        <ul>
+                            <li><strong>Definición:</strong> La arquitectura <strong>cliente-servidor multinivel</strong> (también conocida como <strong>arquitectura de N-capas</strong>) es un modelo de diseño de software que <strong>divide la aplicación en capas lógicas</strong>, cada una con una responsabilidad específica, permitiendo una mayor escalabilidad, mantenibilidad y seguridad.</li>
+                            <li><strong>Evolución del modelo tradicional:</strong> A diferencia del modelo cliente-servidor de 2 capas (donde el cliente y el servidor comparten la lógica), el modelo multinivel <strong>separa la presentación, la lógica de negocio y el acceso a datos</strong> en capas independientes.</li>
+                            <li><strong>Principio de separación de responsabilidades:</strong> Cada capa se comunica solo con las capas adyacentes, lo que facilita el mantenimiento, las actualizaciones y la escalabilidad horizontal.</li>
+                        </ul>
+
+                        <h5>Capas de la Arquitectura Multinivel</h5>
+                        <ul>
+                            <li><strong>Capa de Presentación (Cliente):</strong> Interfaz de usuario (navegador, aplicación móvil, terminal). Se encarga de <strong>mostrar información y capturar entradas</strong> del usuario. No contiene lógica de negocio.</li>
+                            <li><strong>Capa de Lógica de Negocio (Aplicación):</strong> Contiene las <strong>reglas de negocio, validaciones y procesamiento</strong> de la aplicación. Actúa como intermediario entre la presentación y los datos.</li>
+                            <li><strong>Capa de Acceso a Datos (Persistencia):</strong> Gestiona el <strong>almacenamiento y recuperación de datos</strong> en bases de datos, sistemas de archivos o servicios externos.</li>
+                            <li><strong>Capa de Base de Datos:</strong> Almacena físicamente los datos en <strong>sistemas gestores de bases de datos</strong> (DB2, Oracle, SQL Server, etc.) con estructuras optimizadas para consultas.</li>
+                        </ul>
+
+                        <h5>Beneficios de la Arquitectura Multinivel</h5>
+                        <ul>
+                            <li><strong>Escalabilidad:</strong> Cada capa puede escalarse <strong>de forma independiente</strong> según la demanda (más servidores de aplicaciones, más bases de datos, etc.).</li>
+                            <li><strong>Mantenibilidad:</strong> Los cambios en una capa <strong>no afectan a las demás</strong>, siempre que se mantengan las interfaces de comunicación.</li>
+                            <li><strong>Seguridad:</strong> La lógica de negocio y el acceso a datos están <strong>ocultos al cliente</strong>, reduciendo la superficie de ataque.</li>
+                            <li><strong>Reutilización:</strong> La capa de lógica de negocio puede ser <strong>reutilizada por múltiples clientes</strong> (web, móvil, API, etc.).</li>
+                            <li><strong>Distribución geográfica:</strong> Las capas pueden ubicarse en <strong>diferentes servidores o regiones</strong> para mejorar el rendimiento y la disponibilidad.</li>
+                        </ul>
+
+                        <h5>Evolución hacia la nube y microservicios</h5>
+                        <ul>
+                            <li><strong>Arquitectura de microservicios:</strong> Una evolución moderna donde la capa de lógica de negocio se <strong>divide en servicios pequeños e independientes</strong>, cada uno con su propia base de datos.</li>
+                            <li><strong>Contenerización:</strong> Cada capa se ejecuta en <strong>contenedores Docker</strong> orquestados por Kubernetes, permitiendo un despliegue y escalado ágil.</li>
+                            <li><strong>API Gateway:</strong> Actúa como punto único de entrada, <strong>enrutando las peticiones</strong> a los diferentes servicios de la capa de negocio.</li>
+                            <li><strong>Serverless:</strong> Algunas capas (especialmente la de lógica de negocio) pueden ejecutarse en <strong>funciones serverless</strong> (AWS Lambda, Azure Functions) para escalar automáticamente.</li>
+                            <li><strong>Integración con mainframes:</strong> Los mainframes modernos actúan como <strong>capa de datos o lógica de negocio</strong> en arquitecturas multinivel, exponiendo sus servicios mediante APIs REST o SOAP.</li>
+                        </ul>
+
+                        <h5>Ejemplo práctico: Aplicación bancaria</h5>
+                        <ul>
+                            <li><strong>Capa de Presentación:</strong> App móvil y web que muestran el saldo y movimientos.</li>
+                            <li><strong>Capa de Lógica de Negocio:</strong> Servicios que validan transacciones, aplican tasas de interés y generan extractos.</li>
+                            <li><strong>Capa de Acceso a Datos:</strong> ORM que traduce objetos a consultas SQL y llama a APIs del mainframe.</li>
+                            <li><strong>Capa de Base de Datos:</strong> DB2 en mainframe que almacena todas las cuentas y transacciones.</li>
+                            <li><strong>Escalado:</strong> Si hay más usuarios móviles, se escalan los servidores de la capa de presentación y lógica sin afectar al mainframe.</li>
+                        </ul>
+
+                        <h5>Comparativa con otras arquitecturas</h5>
+                        <ul>
+                            <li><strong>2 capas (Cliente-Servidor tradicional):</strong> Cliente con interfaz + lógica, servidor solo datos. <em>Problema: difícil de escalar y mantener.</em></li>
+                            <li><strong>3 capas (Presentación, Lógica, Datos):</strong> Estándar en aplicaciones empresariales. <em>Mejor escalabilidad y mantenimiento.</em></li>
+                            <li><strong>N capas (4+, incluyendo servicios externos):</strong> Arquitecturas modernas con múltiples servicios especializados. <em>Máxima flexibilidad y escalabilidad.</em></li>
+                            <li><strong>Microservicios:</strong> Extremo de N-capas donde cada servicio es independiente. <em>Requiere más gestión de comunicaciones y consistencia.</em></li>
+                        </ul>
+
+                        <p class="mb-0">En conclusión, la arquitectura <strong>cliente-servidor multinivel</strong> es el estándar actual para aplicaciones empresariales modernas, permitiendo que sistemas tan diversos como <strong>aplicaciones web, móviles y mainframes</strong> trabajen juntos de manera eficiente, escalable y segura, adaptándose a las necesidades cambiantes del negocio.</p>
+
+                        <div style="clear:both;"></div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SERVIDORES MULTINIVEL ================= -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <i class="bi bi-hdd-network-fill icon-title"></i> Servidores Multinivel
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <img src="imagenes/OIP.png" alt="Servidor Multinivel">
+
+                        <h5>¿Qué es un Servidor Multinivel?</h5>
+                        <ul>
+                            <li><strong>Definición:</strong> Un <strong>servidor multinivel</strong> es una arquitectura de servidores organizada en <strong>múltiples capas o niveles</strong>, donde cada nivel cumple una función específica dentro del procesamiento de una aplicación. Esto permite distribuir la carga de trabajo, mejorar el rendimiento y facilitar el mantenimiento.</li>
+                            <li><strong>Diferencia con el cliente-servidor tradicional:</strong> Mientras que en el modelo clásico un solo servidor atiende todas las peticiones, en el modelo multinivel la carga se <strong>reparte entre varios servidores especializados</strong> que colaboran entre sí.</li>
+                            <li><strong>Principio de especialización:</strong> Cada servidor se optimiza para una tarea concreta (web, aplicaciones, bases de datos, caché, etc.), lo que aumenta la eficiencia global del sistema.</li>
+                        </ul>
+
+                        <h5>Niveles típicos de un Servidor Multinivel</h5>
+                        <ul>
+                            <li><strong>Nivel de Presentación (Servidor Web):</strong> Recibe las peticiones HTTP/HTTPS de los clientes y sirve contenido estático o redirige a la capa de aplicación. Ejemplos: <strong>Nginx, Apache, IIS</strong>.</li>
+                            <li><strong>Nivel de Aplicación (Servidor de Aplicaciones):</strong> Ejecuta la lógica de negocio, procesa las peticiones y genera respuestas dinámicas. Ejemplos: <strong>Tomcat, WildFly, Node.js, .NET</strong>.</li>
+                            <li><strong>Nivel de Datos (Servidor de Base de Datos):</strong> Almacena y gestiona la información persistente. Ejemplos: <strong>MySQL, PostgreSQL, Oracle, SQL Server</strong>.</li>
+                            <li><strong>Nivel de Caché:</strong> Almacena datos temporales para acelerar las respuestas. Ejemplos: <strong>Redis, Memcached</strong>.</li>
+                            <li><strong>Nivel de Balanceo de Carga:</strong> Distribuye el tráfico entre varios servidores para evitar sobrecargas. Ejemplos: <strong>HAProxy, Nginx, F5</strong>.</li>
+                        </ul>
+
+                        <h5>Características principales</h5>
+                        <ul>
+                            <li><strong>Escalabilidad horizontal:</strong> Se pueden agregar más servidores a cada nivel según la demanda, sin afectar a los demás niveles.</li>
+                            <li><strong>Alta disponibilidad:</strong> Si un servidor falla, otro puede asumir su función, garantizando la continuidad del servicio.</li>
+                            <li><strong>Balanceo de carga:</strong> El tráfico se reparte equitativamente entre los servidores de cada nivel para optimizar recursos.</li>
+                            <li><strong>Seguridad por capas:</strong> Cada nivel puede tener sus propias políticas de seguridad, reduciendo la superficie de ataque.</li>
+                            <li><strong>Mantenimiento independiente:</strong> Se puede actualizar o reparar un nivel sin detener los demás.</li>
+                        </ul>
+
+                        <h5>Ventajas del modelo multinivel</h5>
+                        <ul>
+                            <li><strong>Rendimiento:</strong> Al distribuir la carga, cada servidor trabaja de forma más eficiente.</li>
+                            <li><strong>Flexibilidad:</strong> Se puede cambiar la tecnología de un nivel sin afectar a los otros.</li>
+                            <li><strong>Reducción de costos:</strong> Se pueden usar servidores más económicos y especializados en lugar de uno muy potente.</li>
+                            <li><strong>Tolerancia a fallos:</strong> La caída de un nivel no implica la caída total del sistema.</li>
+                            <li><strong>Optimización de recursos:</strong> Cada nivel se dimensiona según sus necesidades reales.</li>
+                        </ul>
+
+                        <h5>Evolución hacia la nube y contenedores</h5>
+                        <ul>
+                            <li><strong>Servidores virtualizados:</strong> Cada nivel puede ejecutarse en máquinas virtuales independientes, facilitando la migración a la nube.</li>
+                            <li><strong>Contenedores:</strong> Tecnologías como <strong>Docker</strong> y <strong>Kubernetes</strong> permiten desplegar cada nivel como contenedores ligeros y portables.</li>
+                            <li><strong>Autoescalado:</strong> Los servicios cloud (AWS, Azure, GCP) ajustan automáticamente el número de servidores según la demanda.</li>
+                            <li><strong>Serverless:</strong> Algunos niveles pueden implementarse como funciones sin servidor, eliminando la gestión de infraestructura.</li>
+                            <li><strong>Integración con mainframes:</strong> Los mainframes pueden actuar como nivel de datos o de lógica de negocio dentro de una arquitectura multinivel moderna.</li>
+                        </ul>
+
+                        <h5>Ejemplo práctico: Tienda en línea</h5>
+                        <ul>
+                            <li><strong>Nivel Web:</strong> Servidor Nginx que sirve la página y redirige peticiones dinámicas.</li>
+                            <li><strong>Nivel Aplicación:</strong> Varios servidores Node.js que procesan pedidos, pagos y usuarios.</li>
+                            <li><strong>Nivel Caché:</strong> Redis que almacena sesiones y productos más consultados.</li>
+                            <li><strong>Nivel Base de Datos:</strong> PostgreSQL que guarda clientes, pedidos y stock.</li>
+                            <li><strong>Balanceador:</strong> HAProxy que distribuye el tráfico entre los servidores web.</li>
+                        </ul>
+
+                        <p class="mb-0">En conclusión, los <strong>servidores multinivel</strong> representan la evolución natural de la arquitectura cliente-servidor, permitiendo construir sistemas <strong>escalables, resilientes y eficientes</strong> que se adaptan a las exigencias de las aplicaciones modernas, desde pequeñas webs hasta plataformas empresariales de gran escala.</p>
+
+                        <div style="clear:both;"></div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
