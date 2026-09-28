@@ -12,8 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="imagenes/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+
 
     <!-- TEMA 4: CSS externo -->
     <link rel="stylesheet" type="text/css" href="css/estilo2.css">
@@ -146,9 +147,9 @@
                     <td><input type="submit" name="enviar"></td>
                     <td><input type="reset"></td>
                 </tr>
-                
-            </table> 
-            
+
+            </table>
+
         </form>
 
         <!--   TEMA 18: TRANSICIONES   -->
@@ -213,11 +214,68 @@
         <button onclick="borrarDato()">Borrar</button>
         <p id="resultadoStorage"></p>
 
+        <h1> Formularios </h1>
+        <p>
+            Los formularios fueron una de las primeras mejoras que se dieron a conocer de HTML5 y de las que más revuelo
+            causaron, sobre todo por su gran capacidad de autovalidación de una manera extremadamente fácil y sin
+            necesidad de utilizar JavaScript.
+        </p>
+        <form action="pagina1.php" method="get">
+            <table border="5" align="center">
+                <tr>
+                    <th colspan="2"> DATOS PERSONALES</th>
+                </tr>
+                <tr>
+                    <th>Nombre </th>
+                    <td> <input type="text" name="nombre" value="Fanny"> </td>
+                </tr>
+                <tr>
+                    <th>Apellido</th>
+                    <td><input type="text" name="apellido"></td>
+                </tr>
+                <tr>
+                    <th>Boton
+                        <button onclick="saludar()">Haz clic aquí y saludame a tu prima</button>
+                    </th>
+                    <td>
+                        <input type="button" value="Saludame me!" onclick="saludar()">
+                    </td>
+                </tr>
+                <tr>
+                    <th> Que informacion te gustaria </th>
+                    <td>
+                        Video Juegos <input type="checkbox" value="juegos" name="video">
+                        <br> Series <input type="checkbox" value="series" name="series">
+                        <br> Peliculas <input type="checkbox" value="Peliculas" name="Peliculas">
+                        <br> Deporte <input type="checkbox" value="Deporte" name="Deporte">
+                        <br> Musica <input type="checkbox" value="Musica" name="Musica">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Archivos excel o cvs</th>
+                    <td>
+                        <input type="file" name="archivo" accept="image/*">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Genero</th>
+                    <td>
+                        M <input type="radio" name="genero" value="M" checked>
+                        F <input type="radio" name="genero" value="F">
+                        T <input type="radio" name="genero" value="T">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit"></td>
+                    <td><input type="reset"></td>
+                </tr>
+            </table>
+        </form>
+
     </section>
 
     <aside></aside>
 
-    <!--   TEMA 25 + 28: JavaScript   -->
     <script>
         // TEMA 25: Canvas
         const ctx = document.getElementById('lienzo').getContext('2d');
@@ -243,6 +301,9 @@
             localStorage.removeItem('datoUsuario');
             document.getElementById('resultadoStorage').textContent = 'Dato borrado';
         }
+
+
+
     </script>
 
 </body>

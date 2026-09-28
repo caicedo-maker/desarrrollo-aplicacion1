@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ===== RESET Y BASE ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -18,7 +17,7 @@
             padding-bottom: 3rem;
         }
 
-        /* ===== ENCABEZADO ===== */
+        /*   ENCABEZADO  */
         header {
             background: linear-gradient(135deg, #003366, #007bff);
             color: white;
@@ -31,7 +30,7 @@
         header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
         header p { font-size: 1.1rem; opacity: 0.9; }
 
-        /* ===== BUSCADOR ===== */
+        /*   BUSCADOR   */
         .buscador { max-width: 700px; margin: 0 auto 2rem; padding: 0 1rem; }
         .buscador form {
             display: flex;
@@ -67,7 +66,7 @@
         .buscador button:hover { background: #0056b3; }
         .buscador button:active { transform: scale(0.97); }
 
-        /* ===== ESTADO ===== */
+        /*   ESTADO   */
         .estado {
             text-align: center;
             color: #666;
@@ -77,7 +76,7 @@
             padding: 0 1rem;
         }
 
-        /* ===== RESULTADO ===== */
+        /*   RESULTADO   */
         .resultados {
             display: block;
             max-width: 1000px;
@@ -168,7 +167,7 @@
         <p>Explora diferentes tipos de libros usando la API de Google Books</p>
     </header>
 
-    <!-- ========== SECCIÓN INFORMATIVA ========== -->
+    <!--   SECCIÓN INFORMATIVA   -->
 <section class="info-api">
     <div class="info-card">
         <h2>¿Qué es una API?</h2>
@@ -218,7 +217,6 @@
     <section id="resultados" class="resultados"></section>
 
     <script>
-        // ⚠️ REEMPLAZA ESTA CLAVE CON LA TUYA
         const API_KEY = 'AIzaSyC6rKW8vW-Yc-UYKc4S4xemDejp7TB13zw';
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -230,7 +228,7 @@
             const estado = document.getElementById('estado');
 
             if (!formulario) {
-                console.error('❌ No se encontró el formulario');
+                console.error(' No se encontró el formulario');
                 return;
             }
 
@@ -260,7 +258,7 @@
                     const items = datos.items;
 
                     if (!items || items.length === 0) {
-                        estado.textContent = `😕 No se encontraron libros con el título "${busqueda}".`;
+                        estado.textContent = ` No se encontraron libros con el título "${busqueda}".`;
                         return;
                     }
 
@@ -274,7 +272,7 @@
                         });
 
                     if (librosValidos.length === 0) {
-                        estado.textContent = `😕 No se encontraron libros con fecha válida.`;
+                        estado.textContent = ` No se encontraron libros con fecha válida.`;
                         return;
                     }
 
@@ -331,8 +329,8 @@
                     contenedorResultados.appendChild(tarjeta);
 
                 } catch (error) {
-                    console.error('❌ Error al buscar libros:', error);
-                    estado.textContent = '❌ Ocurrió un error al buscar. Revisa la consola (F12).';
+                    console.error(' Error al buscar libros:', error);
+                    estado.textContent = ' Ocurrió un error al buscar.';
                 }
             });
         });
